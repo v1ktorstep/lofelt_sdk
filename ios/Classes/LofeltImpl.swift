@@ -8,6 +8,7 @@
 import Foundation
 import LofeltHaptics
 
+@available(iOS 13, *)
 class LofeltImpl: Lofelt {
     private var haptics: LofeltHaptics?
     
