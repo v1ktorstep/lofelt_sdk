@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:lofelt_sdk/lofelt.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,6 +14,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  final lofelt = Lofelt();
+
+  @override
+  void initState() {
+    super.initState();
+
+    _init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -19,10 +30,24 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text('Plugin example app'),
         ),
-        body: const Center(
-          child: Text('Running on'),
+        body: Center(
+          child: ElevatedButton(
+            onPressed: () {
+              lofelt.play();
+            },
+            child: Text('Play'),
+          ),
         ),
       ),
     );
+  }
+
+  void _init() async {
+    await lofelt.initHaptics();
+
+    final pattern =
+        await rootBundle.loadString('assets/haptics/MovieProjector1.haptic');
+
+    await lofelt.load(pattern);
   }
 }
