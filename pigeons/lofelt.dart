@@ -5,6 +5,8 @@ import 'package:pigeon/pigeon.dart';
   dartOptions: DartOptions(),
   swiftOut: 'ios/Classes/Lofelt.swift',
   swiftOptions: SwiftOptions(),
+  kotlinOut: 'android/src/main/kotlin/com/example/lofelt_sdk/Lofelt.kt',
+  kotlinOptions: KotlinOptions(),
 ))
 @HostApi()
 abstract class Lofelt {
@@ -28,3 +30,5 @@ abstract class Lofelt {
 
   double clipDuration();
 }
+
+// dart run pigeon --input pigeons/lofelt.dart --dart_out lib/lofelt.dart
